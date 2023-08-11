@@ -1,0 +1,14 @@
+{
+  "name": "minify-wasm",
+  "version": "0.1.0",
+  "files": [
+    "minify_wasm_bg.wasm",
+    "minify_wasm.js",
+    "minify_wasm.d.ts"
+  ],
+  "module": "minify_wasm.js",
+  "types": "minify_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

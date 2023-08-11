@@ -1,0 +1,29 @@
+{
+  "name": "www",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "wasm": "wasm-pack build minify-wasm --out-dir ../src/pkg --target web"
+  },
+  "dependencies": {
+    "prism-code-editor": "0.0.4",
+    "prismjs": "1.29.0",
+    "solid-js": "^1.7.10"
+  },
+  "devDependencies": {
+    "@types/prismjs": "1.26.0",
+    "prettier": "3.0.1",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9",
+    "vite-plugin-solid": "^2.7.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "semi": false
+  }
+}

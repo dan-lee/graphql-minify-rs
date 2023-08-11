@@ -1,0 +1,19 @@
+[package]
+name = "graphql-minify"
+authors = ["Daniel Lehr <daniel@launchport.io>"]
+repository = "https://github.com/dan-lee/graphql-minify-rs"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Minify GraphQL queries"
+keywords = ["graphql", "minify", "minification", "query", "schema"]
+exclude = ["www/*"]
+
+[dependencies]
+logos = { version = "0.13.0", features = ["std"] }
+
+[dev-dependencies]
+indoc = "2.0.3"
+
+[profile.release]
+lto = true

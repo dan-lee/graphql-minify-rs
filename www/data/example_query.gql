@@ -1,0 +1,28 @@
+"""
+This is a block string comment.
+"""
+
+query getUserProfile(
+  $userId: ID!
+  $includePosts: Boolean!
+) {
+  user(id: $userId) {
+    id
+    name
+    age
+    friends {
+      id
+      # Spread to include fragment data
+      ...friendInfo
+    }
+    posts @include(if: $includePosts) {
+      title
+      content
+    }
+  }
+}
+
+fragment friendInfo on Friend {
+  name
+  relationshipStatus
+}

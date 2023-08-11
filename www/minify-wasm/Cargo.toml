@@ -1,0 +1,23 @@
+[package]
+name = "minify-wasm"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cfg-if = "1.0.0"
+graphql-minify = { path = "../.." }
+wasm-bindgen = "0.2.87"
+wee_alloc = {version = "0.4.5", optional = true}
+console_error_panic_hook = {version = "0.1.7", optional = true}
+
+[features]
+ default = ["console_error_panic_hook", "wee_alloc"]
+
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = true
