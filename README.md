@@ -1,5 +1,10 @@
 # graphql-minify
 
+<a href="https://docs.rs/graphql-minify/latest/graphql_minify"><img alt="Docs" src="https://img.shields.io/docsrs/graphql-minify/latest"></a>
+<a href="https://lib.rs/crates/graphql-minify"><img alt="Crates.io" src="https://img.shields.io/crates/v/graphql-minify"></a>
+<a href="https://graphql-minify.daniellehr.de"><img alt="Demo" src="https://img.shields.io/badge/demo-wasm-blue"></a>
+
+
 This is a re-implementation of [`stripIgnoredCharacters`](https://graphql-js.org/api/function/stripignoredcharacters/) from the [GraphQL.js reference implementation](https://github.com/graphql/graphql-js) in Rust. It uses [Logos](https://github.com/maciejhirsz/logos) for tokenization.
 
 All relevant tests are ported from the reference implementation and run against the Rust implementation.
