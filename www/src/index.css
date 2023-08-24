@@ -30,6 +30,15 @@ h1 {
   text-align: center;
 }
 
+a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 #editor-container {
   margin-top: 0.5rem;
   display: grid;

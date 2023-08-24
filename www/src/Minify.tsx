@@ -18,20 +18,10 @@ import { cursorPosition } from 'prism-code-editor/cursor'
 import 'prism-code-editor/layout.css'
 import 'prism-code-editor/scrollbar.css'
 import 'prism-code-editor/themes/github-dark.css'
+import { stripIgnoredCharacters } from 'graphql'
 
+import './registerGraphQL.ts'
 import { minify } from './pkg'
-
-languages.graphql = languages.gql = {
-  comments: {
-    block: ['"""', '"""'],
-    line: '#',
-  },
-  autoIndent: [
-    ([start], value) =>
-      /[([{][^\n)\]}]*$/.test(value.slice(0, start).slice(-999)),
-    ([start, end], value) => /\[]|\(\)|{}/.test(value[start - 1] + value[end]),
-  ],
-}
 
 export default function Minify({
   valueSignal,
@@ -44,6 +34,8 @@ export default function Minify({
   let outputEditor: PrismEditor | undefined
 
   const [value, setValue] = valueSignal
+  const [matchesJSImpl, setMatchesJSImpl] = createSignal(true)
+
   const [minified, setMinified] = createSignal('')
 
   createEffect(
@@ -53,6 +45,9 @@ export default function Minify({
       let minified = ''
       try {
         minified = minify(value)
+        const jsMinified = stripIgnoredCharacters(value)
+
+        setMatchesJSImpl(minified === jsMinified)
       } catch (e) {
         console.log(e)
         minified = `Could not minify document`
@@ -109,7 +104,15 @@ export default function Minify({
       {isNaN(saved())
         ? 'N/A'
         : `${saved().toFixed(1)}% (${value().length} chars
-      → ${minified().length} chars)`}
+      → ${minified().length} chars)`}{' '}
+      - Matches GraphQL.js:{' '}
+      {matchesJSImpl() ? (
+        '✅'
+      ) : (
+        <>
+          ❌ (this should not happen! <a href="">please report a bug issue!</a>)
+        </>
+      )}
       <div id="editor-container">
         <div ref={inputRef} />
         <div ref={outputRef} />
